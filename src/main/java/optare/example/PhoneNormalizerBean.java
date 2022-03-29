@@ -1,6 +1,8 @@
 package optare.example;
 
 
+import java.util.Objects;
+
 /**
  * PhoneNormalizerBean
  */
@@ -8,10 +10,13 @@ public class PhoneNormalizerBean implements PhoneNormalizer {
 
     @Override
     public String normalize(String phone) {
+        if (Objects.isNull(phone)){
+            throw new IncorrectNumberFormatException();
+        }
         if (isNumberIncorrect(phone)){
             throw new IncorrectNumberFormatException(phone);
         }
-        phone = phone.replaceAll("[-,\\ ]+", "");
+        phone = phone.replaceAll("[-, ]+", "");
         return fixFormat(phone);
     }
 

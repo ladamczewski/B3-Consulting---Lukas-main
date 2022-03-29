@@ -43,5 +43,10 @@ public class PhoneNormalizerTest {
     assertEquals("+20 636010203",normalizer.normalize("20 636010203"));
   }
 
+  @Test(expected = IncorrectNumberFormatException.class)
+  public void test8() {
+    normalizer.normalize("20 2223");
+  }
+
   
 }
